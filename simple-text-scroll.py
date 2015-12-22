@@ -10,8 +10,8 @@ target_url = """http://pvoutput.org/service/r2/getstatus.jsp?sid=41079&key=333e8
 for line in urllib2.urlopen(target_url):
     reading = line
 reading = reading.split(",") 
-
-scrollphat.write_string(reading[2]+"   ")
+output = "{:,} Kwh".format(reading[2])
+scrollphat.write_string("   ")
 
 while True:
     scrollphat.scroll()
