@@ -3,12 +3,15 @@
 import scrollphat
 import sys
 import time
+import urllib2
 
-if len(sys.argv) != 2:
-    print("\nusage: python simple-text-scroll.py \"message\" \npress CTRL-C to exit\n")
-    sys.exit(0)
+reading = ""
+target_url = """http://pvoutput.org/service/r2/getstatus.jsp?sid=41079&key=333e82f10971475dc09a0e88ee4a78eaf13f4a66"""
+for line in urllib2.urlopen(target_url):
+    reading = line
+reading = reading.split(",") 
 
-scrollphat.write_string(sys.argv[1] + "   ")
+scrollphat.write_string(reading[2]+"   ")
 
 while True:
     scrollphat.scroll()
